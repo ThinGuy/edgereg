@@ -29,6 +29,7 @@ export async function createCluster(c: Client, projectUid: string, clusterName: 
       name: clusterName,
       labels: {
         imported: "false",
+        latlng: "42.981289,-87.8952782",
       }
     },
     spec: {}
