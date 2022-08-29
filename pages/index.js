@@ -158,7 +158,8 @@ export default function Form({ applianceId }) {
           <option value="edge-cambridge;627a4962f245b23834eb4766,61a904fa66f466f67dd86cf3">
             Cambridge, MA - Main St
           </option>
-          <option value="edge-charlotte,630d02ba2a6e0d83bc1d3e1d">
+          <option value="edge-charlotte;630d02ba2a6e0d83bc1d3e1d">
+            Charlotte, NC - Happy St
           </option>
         </select>
 
