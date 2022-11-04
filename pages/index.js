@@ -125,6 +125,7 @@ export default function Form({ applianceId }) {
             Stores
           </option>
           
+          
         </select>
 
         <button type="submit" disabled={isSubmitting}>
