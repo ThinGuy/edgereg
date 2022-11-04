@@ -10,11 +10,13 @@ import Image from "next/image";
 
 export default function Form({ applianceId }) {
   const appliance = useRef(null);
+  const applianceName = useRef(null);
   const [isDisabled, setDisabled] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [applianceValue, setApplianceValue] = useState(applianceId || "");
+  const [applianceNameValue, setApplianceNameValue] = useState("");
 
-  const { name, selectionLabel, logo } = useDemoControls();
+  const { name, logo } = useDemoControls();
 
   async function fun() {
     setDisabled(true);
@@ -54,29 +56,6 @@ export default function Form({ applianceId }) {
 
   const isSSR = useSSR();
 
-  // useEffect( () => {
-  //   async function nfc() {
-  //     try {
-  //       const ndef = new NDEFReader();
-  //       await ndef.scan();
-  //       console.log("> Scan started");
-
-  //       ndef.addEventListener("readingerror", () => {
-  //         console.log("Argh! Cannot read data from the NFC tag. Try another one?");
-  //       });
-
-  //       ndef.addEventListener("reading", ({ message, serialNumber }) => {
-  //         console.log(`> Serial Number: ${serialNumber}`);
-  //         console.log(`> Records: (${message.records.length})`);
-  //       });
-  //     } catch (error) {
-  //       console.log("Argh! " + error);
-  //     }
-
-  //   }
-  //   nfc();
-
-  // });
   return (
     <div className={styles.container}>
       <div className={styles.logoWrap}>
@@ -88,7 +67,7 @@ export default function Form({ applianceId }) {
       <span className="accent">{name}</span> appliance registration!
       </h1>
       <p className={styles.description}>
-        Register the appliance with a CRM project
+        Register the appliance with a project
         {/* <code className={styles.code}>pages/no-js-from.js</code> */}
       </p>
 
@@ -97,31 +76,55 @@ export default function Form({ applianceId }) {
         method="post"
         onSubmit={() => setIsSubmitting(true)}
       >
-        <label htmlFor="appliance">Appliance ID</label>
+        <label htmlFor="appliance">Edge Machine ID</label>
+          <div style={{ display: "flex" }}>
+            <input
+              value={applianceValue}
+              onChange={(ev) => setApplianceValue(ev.target.value)}
+              style={{ flexGrow: 1 }}
+              type="text"
+              ref={appliance}
+              id="appliance"
+              name="appliance"
+              required
+            />
+          
+            <button
+              className={styles.scan}
+              disabled={isDisabled}
+              onClick={fun}
+            >
+              <FontAwesomeIcon icon={faCompass} />
+            </button>
+          </div>
+        <label htmlFor="name">Edge Device Name</label>
         <div style={{ display: "flex" }}>
           <input
-            value={applianceValue}
-            onChange={(ev) => setApplianceValue(ev.target.value)}
+            value={applianceNameValue}
+            onChange={(ev) => setApplianceNameValue(ev.target.value)}
             style={{ flexGrow: 1 }}
             type="text"
-            ref={appliance}
-            id="appliance"
-            name="appliance"
+            ref={applianceName}
+            id="applianceName"
+            name="applianceName"
             required
           />
-          <button
-            className={styles.scan}
-            disabled={isDisabled}
-            onClick={fun}
-          >
-            <FontAwesomeIcon icon={faCompass} />
-          </button>
         </div>
-        <label htmlFor="crmProject">{selectionLabel}</label>
-        <select id="store" name="store" required>
-          <option value="edge-london;628ce30a7c90b5915b37a802,628ce30a7c90b591598ef64c">
-            London, UK - Regent St
+        <label htmlFor="paletteProject">Palette Project</label>
+        <select id="project" name="project" required>
+          <option value="Default">
+            Default
           </option>
+          <option value="Factories">
+            Factories
+          </option>
+          <option value="Hospitals">
+            Hospitals
+          </option>
+          <option value="Stores">
+            Stores
+          </option>
+          
         </select>
 
         <button type="submit" disabled={isSubmitting}>

@@ -3,29 +3,6 @@ import {Writable} from 'stream';
 import fs from 'fs';
 import HttpsProxyAgent from 'https-proxy-agent'
 
-// abstract class HttpClient {
-//   protected readonly instance: AxiosInstance;
-
-//   public constructor(baseURL: string) {
-//     this.instance = axios.create({
-//       baseURL,
-//     });
-
-//     this._initializeResponseInterceptor();
-//   }
-
-//   private _initializeResponseInterceptor = () => {
-//     this.instance.interceptors.response.use(
-//       this._handleResponse,
-//       this._handleError,
-//     );
-//   };
-
-//   private _handleResponse = ({ data }: AxiosResponse) => data;
-
-//   protected _handleError = (error: any) => Promise.reject(error);
-// }
-
 export default class Client {
   // private authToken: string
   private client?: AxiosInstance
@@ -46,6 +23,7 @@ export default class Client {
     return axios.post(url, {
       emailId: this.username,
       password: this.password,
+      org: "pwp",
     }, {timeout: 5000, httpsAgent: httpsProxyAgent, proxy: false})
       .then(response => response.data)
       .catch(e => {
@@ -100,14 +78,12 @@ export default class Client {
       });
   }
 
-
   async getEdgeAppliance(projectUID: string, edgeHostUID: string) {
     const c = await this.getClient();
     return c.get(`/v1/edgehosts/${edgeHostUID}/?ProjectUid=${projectUID}`)
       .then( response => response.data );
   }
 
-  
 
   async createEdgeAppliance(projectUID: string, data: any) {
     const c = await this.getClient();

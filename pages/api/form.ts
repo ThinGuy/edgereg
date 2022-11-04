@@ -6,7 +6,6 @@ interface Credentials {
   password: string;
 }
 
-
 export async function doesEdgeApplianceExist(c: Client, projectUid: string, edgeUid: string) {
   try {
     await c.getEdgeAppliance(projectUid, edgeUid);
@@ -16,41 +15,44 @@ export async function doesEdgeApplianceExist(c: Client, projectUid: string, edge
   }
 }
 
+
 export default async function handler(req, res) {
   const body = req.body
   console.log('body: ', body)
   const appliance = body.appliance;
-  const [clusterName,crmProject] = body.store.split(";");
+  const applianceName = body.applianceName
+  const paletteProject = body.project
 
   const scApi = process.env.SC_API
   const scUser = process.env.SC_USER
   const scPassword = process.env.SC_PASSWORD
-  const scProjectName = process.env.SC_PROJECT_NAME || "Default"
+  
 
-  console.log("New request: ", appliance, crmProject)
 
-  if (!appliance || !clusterName || !crmProject) {
-    return res.json({ data: 'appliance or crmProject name not found' })
+  console.log("New request: ", appliance)
+
+  if (!appliance) {
+    return res.json({ data: 'appliance not found' })
   }
 
   const c = new Client(scApi, scUser, scPassword);
-  // const kubeconfig = await getKubeconfigFromSpectroCloud(c, scProjectName, "vmware-prod-2");
-  const projectUid = await c.getProjectUID(scProjectName);
+  // const kubeconfig = await getKubeconfigFromSpectroCloud(c, "Default", "vmware-prod-2");
+  const projectUid = await c.getProjectUID(paletteProject);
   const alreadyExists = await doesEdgeApplianceExist(c, projectUid, appliance);
   if (alreadyExists) {
     console.log("It already exists! - ");
     return res.redirect(303, '/already')
   }
 
+
   console.log("Creating new edge appliance");
   const data = {
     metadata: {
       name: appliance,
       uid: appliance,
-      // labels: {
-      //   cluster: clusterUid,
-      //   name: clusterName,
-      // }
+      labels: {
+        name: applianceName
+      }
     },
   }
 
