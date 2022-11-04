@@ -100,31 +100,31 @@ export default class Client {
       });
   }
 
-  async getClusterUID(projectUID: string, clusterName: string) {
-    const c = await this.getClient();
-    return c.get(`/v1/spectroclusters?filters=metadata.name=${clusterName}ANDmetadata.isDeleted=false&ProjectUid=${projectUID}`)
-      .then( response => response.data )
-      .then(data => {
-        if (!data || !data.items?.length) {
-          throw new Error(`No cluster found with name '${clusterName}'`);
-        }
+  // async getClusterUID(projectUID: string, clusterName: string) {
+  //   const c = await this.getClient();
+  //   return c.get(`/v1/spectroclusters?filters=metadata.name=${clusterName}ANDmetadata.isDeleted=false&ProjectUid=${projectUID}`)
+  //     .then( response => response.data )
+  //     .then(data => {
+  //       if (!data || !data.items?.length) {
+  //         throw new Error(`No cluster found with name '${clusterName}'`);
+  //       }
 
-        return data.items[0].metadata.uid;
-      });
-  }
+  //       return data.items[0].metadata.uid;
+  //     });
+  // }
 
-  async getClusterProfileUID(projectUID: string, clusterProfileName: string) {
-    const c = await this.getClient();
-    return c.get(`/v1/clusterprofiles?filters=metadata.name=${clusterProfileName}&ProjectUid=${projectUID}`)
-      .then( response => response.data )
-      .then(data => {
-        if (!data || !data.items?.length) {
-          throw new Error(`No cluster profile found with name '${clusterProfileName}'`);
-        }
+  // async getClusterProfileUID(projectUID: string, clusterProfileName: string) {
+  //   const c = await this.getClient();
+  //   return c.get(`/v1/clusterprofiles?filters=metadata.name=${clusterProfileName}&ProjectUid=${projectUID}`)
+  //     .then( response => response.data )
+  //     .then(data => {
+  //       if (!data || !data.items?.length) {
+  //         throw new Error(`No cluster profile found with name '${clusterProfileName}'`);
+  //       }
 
-        return data.items[0].metadata.uid;
-      });
-  }
+  //       return data.items[0].metadata.uid;
+  //     });
+  // }
 
   async getCloudAccountUID(projectUID: string, cloudType: string, cloudAccountName: string) {
     const c = await this.getClient();
@@ -139,11 +139,11 @@ export default class Client {
       });
   }
 
-  async getCluster(projectUID: string, clusterUID: string) {
-    const c = await this.getClient();
-    return c.get(`/v1/spectroclusters/${clusterUID}/?ProjectUid=${projectUID}`)
-      .then( response => response.data );
-  }
+  // async getCluster(projectUID: string, clusterUID: string) {
+  //   const c = await this.getClient();
+  //   return c.get(`/v1/spectroclusters/${clusterUID}/?ProjectUid=${projectUID}`)
+  //     .then( response => response.data );
+  // }
 
   async getEdgeAppliance(projectUID: string, edgeHostUID: string) {
     const c = await this.getClient();
@@ -151,35 +151,35 @@ export default class Client {
       .then( response => response.data );
   }
 
-  async getClusterKubeconfig(projectUID: string, clusterUID: string) {
-    const c = await this.getClient();
-    console.log(projectUID, clusterUID);
+  // async getClusterKubeconfig(projectUID: string, clusterUID: string) {
+  //   const c = await this.getClient();
+  //   console.log(projectUID, clusterUID);
 
-    return c.get(`/v1/spectroclusters/${clusterUID}/assets/kubeconfig?ProjectUid=${projectUID}`, {responseType: 'text', headers: {'Accept' : '*/*'}})
-      .then( response => {
-        return response.data
-      });
-  }
+  //   return c.get(`/v1/spectroclusters/${clusterUID}/assets/kubeconfig?ProjectUid=${projectUID}`, {responseType: 'text', headers: {'Accept' : '*/*'}})
+  //     .then( response => {
+  //       return response.data
+  //     });
+  // }
 
-  async createCluster(projectUID: string, cloudType: string, data: any) {
-    const c = await this.getClient();
-    console.log("Creating cluster");
+  // async createCluster(projectUID: string, cloudType: string, data: any) {
+  //   const c = await this.getClient();
+  //   console.log("Creating cluster");
 
-    return c.post(`/v1/spectroclusters/${cloudType}?ProjectUid=${projectUID}`, data)
-      .then( response => {
-        return response.data.uid;
-      });
-  }
+  //   return c.post(`/v1/spectroclusters/${cloudType}?ProjectUid=${projectUID}`, data)
+  //     .then( response => {
+  //       return response.data.uid;
+  //     });
+  // }
 
-  async importCluster(projectUID: string, cloudType: string, data: any) {
-    const c = await this.getClient();
-    console.log("Import cluster");
+  // async importCluster(projectUID: string, cloudType: string, data: any) {
+  //   const c = await this.getClient();
+  //   console.log("Import cluster");
 
-    return c.post(`/v1/spectroclusters/${cloudType}/import?ProjectUid=${projectUID}`, data)
-      .then( response => {
-        return response.data.uid;
-      });
-  }
+  //   return c.post(`/v1/spectroclusters/${cloudType}/import?ProjectUid=${projectUID}`, data)
+  //     .then( response => {
+  //       return response.data.uid;
+  //     });
+  // }
 
   async createEdgeAppliance(projectUID: string, data: any) {
     const c = await this.getClient();
@@ -190,13 +190,13 @@ export default class Client {
       });
   }
 
-  async attachProfiles(projectUID: string, clusterUID: string, data: any) {
-    const c = await this.getClient();
+  // async attachProfiles(projectUID: string, clusterUID: string, data: any) {
+  //   const c = await this.getClient();
 
-    return c.put(`/v1/spectroclusters/${clusterUID}/profiles?ProjectUid=${projectUID}`, data)
-      .then( response => {
-        return response.data;
-      });
-  }
+  //   return c.put(`/v1/spectroclusters/${clusterUID}/profiles?ProjectUid=${projectUID}`, data)
+  //     .then( response => {
+  //       return response.data;
+  //     });
+  // }
 
 }

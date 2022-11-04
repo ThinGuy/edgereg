@@ -122,45 +122,6 @@ export default function Form({ applianceId }) {
           <option value="edge-london;628ce30a7c90b5915b37a802,628ce30a7c90b591598ef64c">
             London, UK - Regent St
           </option>
-          <option value="edge-pittsburgh;628ce30a7c90b5915b37a802,628ce30a7c90b591598ef64c">
-            Pittsburgh, PA - Penguin St
-          </option>
-          <option value="edge-hollywood;628ce30a7c90b5915b37a802,628ce30a7c90b591598ef64c">
-            Hollywood, Ca - Harry St
-          </option>
-          <option value="edge-miami;628ce30a7c90b5915b37a802,628ce30a7c90b591598ef64c">
-            Miami, FL - Beach St
-          </option>
-          <option value="edge-denver;628ce30a7c90b5915b37a802,628ce30a7c90b591598ef64c">
-            Denver, CO - Snow St
-          </option>
-          <option value="edge-newyork;628ce30a7c90b5915b37a802,628ce30a7c90b591598ef64c">
-            New York, NW - Wall St
-          </option>
-          <option value="edge-dallas;62753e05f245ae150c1a3c65,62753eadf245ae15ae76a4cb">
-            Dallas, TX - BBQ St
-          </option>
-          <option value="edge-milwaukee;62a96c6f4575048ec4495496,62a97922457504988e543a7a">
-            Milwaukee, WI - Edge Stores
-          </option>
-          <option value="edge-sanjose;627a4962f245b23834eb4766,61a904fa66f466f67dd86cf3">
-            San Jose, Ca - Hopper St
-          </option>
-          <option value="edge-lasvegas;627a4962f245b23834eb4766,61a904fa66f466f67dd86cf3">
-            Las Vegas, NV - Party Rd
-          </option>
-          <option value="edge-whitefish;627e94767c90aaab2cfd97a3,627e94b17c90aaab5a71a8b5">
-            Whitefish, MT - Parkway Dr
-          </option>
-          <option value="edge-phoenix;628bdec37c90b4bf16481eb1,628be14c7c90b4c1110e633e">
-            Phoenix, AZ - Suns Ave
-          </option>
-          <option value="edge-cambridge;627a4962f245b23834eb4766,61a904fa66f466f67dd86cf3">
-            Cambridge, MA - Main St
-          </option>
-          <option value="edge-charlotte;630d02ba2a6e0d83bc1d3e1d">
-            Charlotte, NC - Happy St
-          </option>
         </select>
 
         <button type="submit" disabled={isSubmitting}>

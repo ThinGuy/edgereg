@@ -6,13 +6,6 @@ interface Credentials {
   password: string;
 }
 
-export async function getKubeconfigFromSpectroCloud(c: Client, projectName: string, clusterName: string) {
-  // const c = new Client(cred.host, cred.username, cred.password);
-  const projectUid = await c.getProjectUID(projectName);
-  const clusterUid = await c.getClusterUID(projectUid, clusterName);
-  const kubeconfig = await c.getClusterKubeconfig(projectUid, clusterUid);
-  return kubeconfig;
-}
 
 export async function doesEdgeApplianceExist(c: Client, projectUid: string, edgeUid: string) {
   try {
@@ -23,34 +16,34 @@ export async function doesEdgeApplianceExist(c: Client, projectUid: string, edge
   }
 }
 
-export async function createCluster(c: Client, projectUid: string, clusterName: string) {
-  const clusterData = {
-    metadata: {
-      name: clusterName,
-      labels: {
-        imported: "false",
-        latlng: "42.981289,-87.8952782",
-      }
-    },
-    spec: {}
-  }
+// export async function createCluster(c: Client, projectUid: string, clusterName: string) {
+//   const clusterData = {
+//     metadata: {
+//       name: clusterName,
+//       labels: {
+//         imported: "false",
+//         latlng: "42.981289,-87.8952782",
+//       }
+//     },
+//     spec: {}
+//   }
 
-  const clusterUid = await c.importCluster(projectUid, 'generic', clusterData);
-  return clusterUid;
-}
+//   const clusterUid = await c.importCluster(projectUid, 'generic', clusterData);
+//   return clusterUid;
+// }
 
-export async function getOrCreateCluster(c: Client, projectUid: string, clusterName: string) {
-  try {
-    const clusterUid = await c.getClusterUID(projectUid, clusterName);
-    console.log("Found existing cluster", clusterUid, clusterName);
-    return clusterUid;
-  } catch(e) {
-    console.log("Creating new cluster", clusterName);
-    const clusterUid = await createCluster(c, projectUid, clusterName);
-    console.log("Created new cluster", clusterUid, clusterName);
-    return clusterUid;
-  }
-}
+// export async function getOrCreateCluster(c: Client, projectUid: string, clusterName: string) {
+//   try {
+//     const clusterUid = await c.getClusterUID(projectUid, clusterName);
+//     console.log("Found existing cluster", clusterUid, clusterName);
+//     return clusterUid;
+//   } catch(e) {
+//     console.log("Creating new cluster", clusterName);
+//     const clusterUid = await createCluster(c, projectUid, clusterName);
+//     console.log("Created new cluster", clusterUid, clusterName);
+//     return clusterUid;
+//   }
+// }
 
 export default async function handler(req, res) {
   const body = req.body
@@ -78,25 +71,25 @@ export default async function handler(req, res) {
     return res.redirect(303, '/already')
   }
 
-  const clusterUid = await getOrCreateCluster(c, projectUid, clusterName);
-  console.log("Cluster UID:", clusterUid);
+  // const clusterUid = await getOrCreateCluster(c, projectUid, clusterName);
+  // console.log("Cluster UID:", clusterUid);
 
-  const attachProfile = {
-    profiles: crmProject.split(",").map(a => ({ uid: a})),
-  }
+  // const attachProfile = {
+  //   profiles: crmProject.split(",").map(a => ({ uid: a})),
+  // }
 
-  const profile = await c.attachProfiles(projectUid, clusterUid, attachProfile);
-  console.log("Attached Cluster profiles", crmProject);
+  // const profile = await c.attachProfiles(projectUid, clusterUid, attachProfile);
+  // console.log("Attached Cluster profiles", crmProject);
 
-  console.log("Creating new edge appliance");
+  // console.log("Creating new edge appliance");
   const data = {
     metadata: {
       name: appliance,
       uid: appliance,
-      labels: {
-        cluster: clusterUid,
-        name: clusterName,
-      }
+      // labels: {
+      //   cluster: clusterUid,
+      //   name: clusterName,
+      // }
     },
   }
 
