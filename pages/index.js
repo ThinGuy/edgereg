@@ -10,13 +10,15 @@ import Image from "next/image";
 
 export default function Form({ applianceId }) {
   const appliance = useRef(null);
+  const applianceLabel = useRef(null);
   const applianceName = useRef(null);
   const [isDisabled, setDisabled] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [applianceValue, setApplianceValue] = useState(applianceId || "");
+  const [applianceLabelValue, setApplianceLabelValue] = useState("");
   const [applianceNameValue, setApplianceNameValue] = useState("");
 
-  const { name, logo } = useDemoControls();
+  const { name, selectionLabel, logo } = useDemoControls();
 
   async function fun() {
     setDisabled(true);
@@ -97,7 +99,7 @@ export default function Form({ applianceId }) {
               <FontAwesomeIcon icon={faCompass} />
             </button>
           </div>
-        <label htmlFor="name">Edge Device Name</label>
+        <label htmlFor="name">Device Name</label>
         <div style={{ display: "flex" }}>
           <input
             value={applianceNameValue}
@@ -110,7 +112,21 @@ export default function Form({ applianceId }) {
             required
           />
         </div>
-        <label htmlFor="paletteProject">Palette Project</label>
+        <label htmlFor="name">{selectionLabel}</label>
+        <input name="labelType" value={selectionLabel} type="hidden" />
+        <div style={{ display: "flex" }}>
+          <input
+            value={applianceLabelValue}
+            onChange={(ev) => setApplianceLabelValue(ev.target.value)}
+            style={{ flexGrow: 1 }}
+            type="text"
+            ref={applianceLabel}
+            id="applianceLabel"
+            name="applianceLabel"
+            required
+          />
+        </div>
+        <label htmlFor="paletteProject">City</label>
         <select id="project" name="project" required>
           <option value="Default">
             Default
