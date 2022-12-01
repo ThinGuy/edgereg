@@ -55,7 +55,7 @@ export default async function handler(req, res) {
       name: appliance,
       uid: appliance,
       labels: {
-        [labelType]: applianceLabel,
+        [labelType.toLowerCase()]: applianceLabel,
         name: applianceName
       }
     },
