@@ -8,6 +8,7 @@ import useDemoControls from "components/common/DemoSettings";
 import useSSR from "components/common/SSR";
 import Image from "next/image";
 
+
 export default function Form({ applianceId }) {
   const appliance = useRef(null);
   const applianceLabel = useRef(null);
@@ -66,10 +67,10 @@ export default function Form({ applianceId }) {
         )}
       </div>
       <h1 className={styles.title}>
-      <span className="accent">{name}</span> appliance registration!
+      <span className="accent">{name}</span> Edge Host Registration!
       </h1>
       <p className={styles.description}>
-        Register the appliance with a project
+        Register the Edge Host with Palette
         {/* <code className={styles.code}>pages/no-js-from.js</code> */}
       </p>
 
@@ -146,9 +147,8 @@ export default function Form({ applianceId }) {
           <option value="Seattle">
             Seattle
           </option>
-          
-          
         </select>
+
 
         <button type="submit" disabled={isSubmitting}>
           Submit
