@@ -18,11 +18,11 @@ npm install
 npm run dev
 ```
 
-###Local Installation:
+### Local Installation:
 
 After doing the above steps, open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-###LXD Installation: 
+### LXD Installation: 
 
 Get IP of container using:
 ```bash
