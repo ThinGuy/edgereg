@@ -1,15 +1,16 @@
 ### Note:
 This is a fork of [3pings/pwp-edgereg-app](https://github.com/3pings/pwp-edgereg-app), cosmetic changes only (colors, allow for bigger images, etc) for customer demo using spectro cloud and palette.
 
-## Shortcut
-
-If LXD is intialized on your machine, lxd-edgereg.sh to run in a LXD machine container.
-
-## Getting Started
+# Getting Started
 
 Tested on Ubuntu 22.04
 
-From an Ubuntu 22.04 instance:
+### TL;DR
+
+If LXD is intialized on your machine, use [lxd-edgereg.sh](https://raw.githubusercontent.com/ThinGuy/edgereg/main/lxd-edgereg.sh) to automate the installation and execute in a LXD machine container.
+
+
+## Installation (Ubuntu):
 
 ```bash
 sudo apt update
@@ -21,16 +22,16 @@ npm install
 npm run dev
 ```
 
-### Local Installation:
+### Local:
 
 After doing the above steps, open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### LXD Installation: 
+### LXD: 
 
 Get IP of container using:
 ```bash
 lxc list ${NAME} -c4
 ```
 
-Open http://<LXD Container IP>:3000 with your browser to see the result.
+Open http://*{LXD Container IP}*:3000 with your browser to see the result.
 
