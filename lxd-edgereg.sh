@@ -172,7 +172,9 @@ config:
       - export DEBIAN_FRONTEND=noninteractive
       - update-alternatives --set editor /usr/bin/vim.basic
       - su - \$(id -un 1000) --login -c 'git clone https://github.com/ThinGuy/edgereg.git ~/edgereg'
-      - su - \$(id -un 1000) --login -c 'cd ~/edgereg;npm update;npm install;npm run dev'
+      - su - \$(id -un 1000) --login -c 'cd ~/edgereg;npm update
+      - su - \$(id -un 1000) --login -c 'cd ~/edgereg;npm install'
+      - su - \$(id -un 1000) --login -c 'cd ~/edgereg;sleep 5;npm run dev'
 description: Palette Edge Registration Tool
 devices:
   eth0:
