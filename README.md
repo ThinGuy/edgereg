@@ -1,6 +1,6 @@
 ## Shortcut
 
-If LXD is intialized on your machine, use [this gist](https://gist.githubusercontent.com/ThinGuy/78dbc01dc7056640c3000aebf1bc5c72/raw/0fa3006efc4a735a5bb61a7ae0320dc610352f26/lxd-edgereg.sh) to run in a LXD machine container.
+If LXD is intialized on your machine, use [this gist](https://gist.githubusercontent.com/ThinGuy/78dbc01dc7056640c3000aebf1bc5c72/raw/f8001e8fae7aad8ff4a1ed7259c8020659abe1fe/lxd-edgereg.sh) to run in a LXD machine container.
 
 ## Getting Started
 
