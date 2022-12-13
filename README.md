@@ -1,3 +1,6 @@
+### Note:
+This is a fork of [3pings/pwp-edgereg-app](https://github.com/3pings/pwp-edgereg-app), cosmetic changes only (colors, allow for bigger images, etc) for customer demo using spectro cloud and palette.
+
 ## Shortcut
 
 If LXD is intialized on your machine, lxd-edgereg.sh to run in a LXD machine container.
